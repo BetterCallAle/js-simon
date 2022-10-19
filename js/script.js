@@ -5,21 +5,33 @@ const heading = document.querySelector("h1");
 const rndArray = getRndArray(1, 100, 5);
 console.log(rndArray);
 const userNumbersArray = []
+const rightNumber = []
 // stamp number in page
 stampRndNumbers(heading, rndArray);
 
 // Create a timer with random array visible for 30 sec
 setTimeout(function(){
     heading.classList.add("hidden")
-}, 1000)
+}, 30000)
 
 //set another timer for the prompt asking the user to write the numbers
 setTimeout(()=>{
     //asking 5 time the numbers to the user
     for(let i = 0; i < 5; i++){
-        userNumbersArray.push(parseInt(prompt("inserisci un numero")))
+        userNumbersArray.push(parseInt(prompt("inserisci un numero")));
+        console.log(userNumbersArray);
+        const thisNumber = userNumbersArray[i];
+        console.log(thisNumber);
+        if(rndArray.includes(thisNumber)){
+            rightNumber.push(thisNumber)
+        }
+        console.log(rightNumber);
     }
-}, 1099)
+
+    //output
+    heading.classList.remove("hidden");
+    heading.innerHTML = `I numeri da ricordare erano ${rndArray.join(" - ")} i tuoi numeri sono ${userNumbersArray.join(" - ")}. Hai indovinato ${rightNumber.length} numeri (${rightNumber.join(" - ")})`
+}, 31000)
 
 
 
@@ -57,6 +69,8 @@ function getRndArray(min, max, arrayLenght) {
 
     return arrayWithRandomNumber
 }
+
+
 
 // UI FUNCTIONS
 /**
