@@ -1,17 +1,26 @@
 // Extract h1 from DOM 
 const heading = document.querySelector("h1");
 
-// Create an Array with 5 random numbers
+// Create an Array with 5 random numbers and an array with user numbers
 const rndArray = getRndArray(1, 100, 5);
 console.log(rndArray);
-
+const userNumbersArray = []
 // stamp number in page
 stampRndNumbers(heading, rndArray);
 
-// Create a timer whit random array visible for 30 sec
+// Create a timer with random array visible for 30 sec
 setTimeout(function(){
     heading.classList.add("hidden")
-}, 30000)
+}, 1000)
+
+//set another timer for the prompt asking the user to write the numbers
+setTimeout(()=>{
+    //asking 5 time the numbers to the user
+    for(let i = 0; i < 5; i++){
+        userNumbersArray.push(parseInt(prompt("inserisci un numero")))
+    }
+}, 1099)
+
 
 
 
