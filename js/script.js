@@ -1,37 +1,43 @@
-// Extract h1 from DOM 
-const heading = document.querySelector("h1");
+// Extract elements from DOM 
+const heading = document.querySelector("h2");
+const container = document.querySelector(".container")
 
-// Create an Array with 5 random numbers and an array with user numbers
-const rndArray = getRndArray(1, 100, 5);
-console.log(rndArray);
-const userNumbersArray = []
-const rightNumber = []
-// stamp number in page
-stampRndNumbers(heading, rndArray);
+// Start the game when click the button play
+document.getElementById("play").addEventListener("click", function(){
+    // clear the container and stop the timers
+    container.innerHTML= ""
+    // Create an Array with 5 random numbers and an array with user numbers
+    const rndArray = getRndArray(1, 100, 5);
+    console.log(rndArray);
+    const userNumbersArray = []
+    const rightNumber = []
+    // stamp number in page
+    stampRndNumbers(container, rndArray);
 
-// Create a timer with random array visible for 30 sec
-setTimeout(function(){
-    heading.classList.add("hidden")
-}, 30000)
+    // Create a timer with random array visible for 30 sec
+    const firstTimer = setTimeout(function(){
+        container.innerHTML = ""
+    }, 30000)
 
-//set another timer for the prompt asking the user to write the numbers
-setTimeout(()=>{
-    //asking 5 time the numbers to the user
-    for(let i = 0; i < 5; i++){
-        userNumbersArray.push(parseInt(prompt("inserisci un numero")));
-        console.log(userNumbersArray);
-        const thisNumber = userNumbersArray[i];
-        console.log(thisNumber);
-        if(rndArray.includes(thisNumber)){
-            rightNumber.push(thisNumber)
+    //set another timer for the prompt asking the user to write the numbers
+    const secondTimer = setTimeout(()=>{
+        //asking 5 time the numbers to the user
+        for(let i = 0; i < 5; i++){
+            userNumbersArray.push(parseInt(prompt("inserisci un numero")));
+            console.log(userNumbersArray);
+            const thisNumber = userNumbersArray[i];
+            console.log(thisNumber);
+            if(rndArray.includes(thisNumber)){
+                rightNumber.push(thisNumber);
+            }
+            console.log(rightNumber);
         }
-        console.log(rightNumber);
-    }
 
-    //output
-    heading.classList.remove("hidden");
-    heading.innerHTML = `I numeri da ricordare erano ${rndArray.join(" - ")} i tuoi numeri sono ${userNumbersArray.join(" - ")}. Hai indovinato ${rightNumber.length} numeri (${rightNumber.join(" - ")})`
-}, 31000)
+        //output
+        container.innerHTML = stampTheOutput(rndArray, userNumbersArray, rightNumber)
+    }, 31000)
+
+})
 
 
 
@@ -83,5 +89,28 @@ function stampRndNumbers(element, array) {
     
     const arrayToString = array.join(" - ");
     
-    element.innerHTML = arrayToString;
+    element.innerHTML = `<h2> ${arrayToString} </h2>`;
+}
+
+/**
+ * Description: return a different output with user score and if they win or lose
+ * @param {array} randomArray the random numbers from the cpu
+ * @param {array} userNumbers the numbers written by users
+ * @param {array} numberCompared the array compared with random and user numbers
+ * @returns {string} the output text
+ */
+function stampTheOutput(randomArray, userNumbers, numberCompared){
+    
+    let outputText = `<h2>I numeri da ricordare erano: ${randomArray.join(" - ")}.</h2>
+                      <h2>I numeri che hai scritto erano: ${userNumbers.join(" - ")}</h2>
+                      <h2>I numeri che hai ricordato sono: ${numberCompared.join(" - ")}</h2>
+                      <h2>Il tuo punteggio è ${numberCompared.length}</h2>`
+    
+    if(randomArray.length === numberCompared.length){
+        outputText = `<h2>Complimenti, hai ricordato tutti i numeri. (${randomArray.join(" - ")}) </h2>`
+    } else if (numberCompared.length === 0){
+        outputText = `<h2>Assurdo! Non hai ricordato neanche un numero! (${randomArray.join(" - ")})</h2>`
+    }
+
+    return outputText
 }

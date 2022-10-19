@@ -5,6 +5,59 @@
     box-sizing: border-box;
 }
 
+/* COMMON */
+html{
+    font-family: sans-serif;
+}
+
+body{
+    color: white;
+    background-color: rgb(50, 50, 50);
+}
+
 .hidden{
     display: none;
+}
+
+/* HEADER */
+header{
+    background-color: rgb(70, 70, 70);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    height: 70px;
+}
+
+button{
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border-radius: 30px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    transition: all 125ms linear;
+}
+
+button:hover{
+    background-color: white;
+    border: 1px soldi black;
+    color: red;
+}
+
+/* MAIN */
+.container{
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.numbers{
+    font-size: 2rem;
+}
+
+h2{
+    margin-top: 1rem;
 }
