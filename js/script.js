@@ -1,12 +1,17 @@
 // Extract h1 from DOM 
-const heading = document.querySelector("h1")
+const heading = document.querySelector("h1");
 
 // Create an Array with 5 random numbers
-const rndArray = getRndArray(1, 100, 5)
+const rndArray = getRndArray(1, 100, 5);
 console.log(rndArray);
 
+// stamp number in page
+stampRndNumbers(heading, rndArray);
+
 // Create a timer whit random array visible for 30 sec
-stampRndNumbers(heading, rndArray)
+setTimeout(function(){
+    heading.classList.add("hidden")
+}, 30000)
 
 
 
@@ -31,13 +36,13 @@ function giveRndNumber(min, max) {
  * @returns {Array} array with 
  */
 function getRndArray(min, max, arrayLenght) {
-    const arrayWithRandomNumber = []
+    const arrayWithRandomNumber = [];
 
     while (arrayWithRandomNumber.length < arrayLenght) {
-        let randomNumber = giveRndNumber(min, max)
+        let randomNumber = giveRndNumber(min, max);
 
         if (!arrayWithRandomNumber.includes(randomNumber)) {
-            arrayWithRandomNumber.push(randomNumber)
+            arrayWithRandomNumber.push(randomNumber);
         }
     }
 
@@ -53,7 +58,7 @@ function getRndArray(min, max, arrayLenght) {
 
 function stampRndNumbers(element, array) {
     
-    const arrayToString = array.join(" - ") 
+    const arrayToString = array.join(" - ");
     
-    element.innerHTML = arrayToString
+    element.innerHTML = arrayToString;
 }
