@@ -5,6 +5,8 @@ const heading = document.querySelector("h1")
 const rndArray = getRndArray(1, 100, 5)
 console.log(rndArray);
 
+// Create a timer whit random array visible for 30 sec
+stampRndNumbers(heading, rndArray)
 
 
 
@@ -40,4 +42,18 @@ function getRndArray(min, max, arrayLenght) {
     }
 
     return arrayWithRandomNumber
+}
+
+// UI FUNCTIONS
+/**
+ * Description: stamp an array in a DOM element
+ * @param {object} element an element from the DOM
+ * @param {array} array an array with somethings to stamp
+ */
+
+function stampRndNumbers(element, array) {
+    
+    const arrayToString = array.join(" - ") 
+    
+    element.innerHTML = arrayToString
 }
