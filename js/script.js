@@ -11,18 +11,32 @@ document.getElementById("play").addEventListener("click", function(){
     console.log(rndArray);
     const userNumbersArray = []
     const rightNumber = []
-    // stamp number in page
-    stampRndNumbers(container, rndArray);
-
+   /*  // stamp number in page
+    stampRndNumbers(container, rndArray); */
+    let index = 0
+    
+    
     // Create a timer with random array visible for 30 sec
-    firstTimer = setTimeout(function(){
-        container.innerHTML = ""
-    }, 30000)
+    const firstTimer = setInterval(function(){
+        
+        let thisRandomNumber = rndArray[index]
+        container.innerHTML = thisRandomNumber
+        index++
+        console.log(index);
+
+        if(index > rndArray.length){
+            container.innerHTML = ""
+            clearInterval(firstTimer)
+        } 
+
+        
+    }, 1000)
 
     //set another timer for the prompt asking the user to write the numbers
-    secondTimer = setTimeout(()=>{
+    setTimeout(()=>{
         //asking 5 time the numbers to the user
         for(let i = 0; i < 5; i++){
+            
             userNumbersArray.push(parseInt(prompt("inserisci un numero")));
             console.log(userNumbersArray);
             const thisNumber = userNumbersArray[i];
@@ -35,7 +49,7 @@ document.getElementById("play").addEventListener("click", function(){
 
         //output
         container.innerHTML = stampTheOutput(rndArray, userNumbersArray, rightNumber)
-    }, 31000)
+    }, 6000)
 
 })
 
