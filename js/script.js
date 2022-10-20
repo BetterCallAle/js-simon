@@ -15,12 +15,12 @@ document.getElementById("play").addEventListener("click", function(){
     stampRndNumbers(container, rndArray);
 
     // Create a timer with random array visible for 30 sec
-    const firstTimer = setTimeout(function(){
+    firstTimer = setTimeout(function(){
         container.innerHTML = ""
     }, 30000)
 
     //set another timer for the prompt asking the user to write the numbers
-    const secondTimer = setTimeout(()=>{
+    secondTimer = setTimeout(()=>{
         //asking 5 time the numbers to the user
         for(let i = 0; i < 5; i++){
             userNumbersArray.push(parseInt(prompt("inserisci un numero")));
