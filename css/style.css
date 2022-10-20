@@ -52,6 +52,7 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: .7rem;
 }
 
 .numbers{

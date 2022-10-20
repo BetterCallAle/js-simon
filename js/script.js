@@ -11,8 +11,6 @@ document.getElementById("play").addEventListener("click", function(){
     console.log(rndArray);
     const userNumbersArray = []
     const rightNumber = []
-   /*  // stamp number in page
-    stampRndNumbers(container, rndArray); */
     let index = 0
     
     
@@ -37,7 +35,7 @@ document.getElementById("play").addEventListener("click", function(){
         //asking 5 time the numbers to the user
         for(let i = 0; i < 5; i++){
             
-            userNumbersArray.push(parseInt(prompt("inserisci un numero")));
+            userNumbersArray.push(parseInt(prompt("Inserisci i numeri che hai visto, un numero alla volta")));
             console.log(userNumbersArray);
             const thisNumber = userNumbersArray[i];
             console.log(thisNumber);
@@ -49,7 +47,7 @@ document.getElementById("play").addEventListener("click", function(){
 
         //output
         container.innerHTML = stampTheOutput(rndArray, userNumbersArray, rightNumber)
-    }, 6000)
+    }, 7000)
 
 })
 
